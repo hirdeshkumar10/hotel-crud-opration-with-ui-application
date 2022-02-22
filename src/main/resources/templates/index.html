@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <h1>Hotel crud operation</h1>
+</head>
+<body style="background-color:brown">
+    <button><a href="/hotels">Add hotel</a> </button>
+    <form th:action="@{/_search/hotels}" method="get">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" th:value="${searchText}" name="searchText" placeholder="search">
+                </td>
+                <td>
+                    <input type="submit" value="Search">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <table border="5px">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Hotel_Type</th>
+            <th>Action</th>
+            <th>Action</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr  th:each="hotel:${hotels}">
+
+            <td th:text="${hotel.id}"></td>
+            <td th:text="${hotel.code}"></td>
+            <td th:text="${hotel.name}"></td>
+            <td th:text="${hotel.email}"></td>
+            <td th:text="${hotel.mobile}"></td>
+            <td th:text="${hotel.hotelType}"></td>
+            <td>
+                <button>
+                    <a th:href="@{/hotels/{id} (id=${hotel.id})}">Edit</a>
+                </button>
+            </td>
+            <td>
+                <button>
+                    <a th:href="@{/hotels/delete/{id} (id=${hotel.id})}">delete</a>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
